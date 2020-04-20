@@ -33,3 +33,5 @@ jobs:
         TenantId: ${{ secrets.TENANT_ID }}
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.COVERALLS_TOKEN }}
