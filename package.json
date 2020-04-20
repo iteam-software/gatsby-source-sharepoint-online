@@ -1,0 +1,27 @@
+{
+  "name": "gatsby-source-sharepoint-online",
+  "version": "0.0.1",
+  "description": "Sources data for Gatsby from Sharepoint Online.",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iteam-consulting/gatsby-source-sharepoint-online.git"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-source",
+    "sharepoint"
+  ],
+  "author": "Matt Lynam <mlynam@iteamnm.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online/issues"
+  },
+  "homepage": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online#readme",
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^2.0.0"
+  }
+}
