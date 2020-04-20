@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm test
+    - run: npm test -- --collectCoverage
       env:
         CI: true
         AppId: ${{ secrets.AZURE_APP_ID }}
