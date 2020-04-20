@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online#readme",
   "dependencies": {
-    "@microsoft/microsoft-graph-client": "^2.0.0"
+    "@microsoft/microsoft-graph-client": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.12.1"
   },
   "devDependencies": {
     "babel-jest": "^25.4.0",
