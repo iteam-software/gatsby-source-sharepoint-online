@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require("isomorphic-fetch");
 const qs = require("query-string");
 
 class NodeAuthenticationProvider {
@@ -38,16 +38,15 @@ class NodeAuthenticationProvider {
 
   /**
    * Gets an access token.
-   * @param {string} scope The scopes requested for this token.
    * @returns {Promise.<string>} The access token.
    */
-  async getAccessToken(scope) {
+  async getAccessToken() {
     const url = `https://login.microsoft.com/${this.tenantId}/oauth2/v2.0/token`;
     const body = qs.stringify({
       grant_type: "client_credentials",
       client_id: this.appId,
       client_secret: this.appSecret,
-      scope,
+      scope: "https://graph.microsoft.com/.default",
     });
 
     const response = await fetch(url, {

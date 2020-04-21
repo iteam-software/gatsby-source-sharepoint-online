@@ -4,6 +4,9 @@
   "description": "Sources data for Gatsby from Sharepoint Online.",
   "main": "gatsby-node.js",
   "scripts": {
+    "develop": "npm run build && gatsby develop",
+    "start": "npm run develop",
+    "build": "babel src -d plugins/gatsby-source-sharepoint-online --ignore src/**/*.test.js --config-file ./config/babel.config.js",
     "test": "jest"
   },
   "repository": {
@@ -24,13 +27,23 @@
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^2.0.0",
     "dotenv": "^8.2.0",
+    "gatsby": "^2.20.27",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
-    "query-string": "^6.12.1"
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
     "babel-jest": "^25.4.0",
     "babel-preset-gatsby": "^0.3.3",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.4.0"
+    "jest": "^25.4.0",
+    "webpack": "^4.43.0"
   }
 }

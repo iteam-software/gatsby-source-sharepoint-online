@@ -10,9 +10,7 @@ describe("NodeAuthenticationProvider", () => {
     );
 
     // Act
-    const token = await provider.getAccessToken(
-      "https://graph.microsoft.com/.default"
-    );
+    const token = await provider.getAccessToken();
 
     // Assert
     expect(token).toBeDefined();
@@ -22,17 +20,5 @@ describe("NodeAuthenticationProvider", () => {
     expect(() => new NodeAuthenticationProvider()).toThrow(
       "Invalid appId, appSecret, or tenantId."
     );
-  });
-
-  test("should throw if no scope is provided", () => {
-    // Arrange
-    const provider = new NodeAuthenticationProvider(
-      process.env.AppId,
-      process.env.AppSecret,
-      process.env.TenantId
-    );
-
-    // Act & Assert
-    expect(() => provider.getAccessToken()).rejects.toThrow("400");
   });
 });

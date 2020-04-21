@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Gatsby build results
+public/
+
+# Build results
+plugins/gatsby-source-sharepoint-online/
