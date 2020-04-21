@@ -25,11 +25,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm test
+    - run: npm test -- --collectCoverage
       env:
         CI: true
         AppId: ${{ secrets.AZURE_APP_ID }}
         AppSecret: ${{ secrets.AZURE_APP_SECRET }}
-        TentantId: ${{ secrets.TENANT_ID }}
+        TenantId: ${{ secrets.TENANT_ID }}
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
