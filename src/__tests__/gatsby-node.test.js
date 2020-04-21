@@ -4,10 +4,22 @@ describe("Gatsby Node Hook", () => {
   test("should load all lists for a given site.", (done) => {
     // Arrange
     const config = {
-      site: "df6437cc-b0e5-4f13-ba4b-4c6bb14b0bfa",
+      host: "iteamnm.sharepoint.com",
       appId: process.env.AppId,
       appSecret: process.env.AppSecret,
       tenantId: process.env.TenantId,
+      sites: [
+        {
+          name: "gatsby-source-sharepoint-online",
+          relativePath: "sites/gatsby-source-sharepoint-online",
+          lists: [
+            {
+              title: "People",
+              fields: ["Person", "Workplace"],
+            },
+          ],
+        },
+      ],
     };
 
     const helpers = {
