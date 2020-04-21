@@ -11,12 +11,12 @@ module.exports = {
         tenantId: process.env.TenantId,
         sites: [
           {
-            name: "gatsby-source-sharepoint-online",
+            name: "TestSharePointSite",
             relativePath: "sites/gatsby-source-sharepoint-online",
             lists: [
               {
                 title: "People",
-                fields: ["Person", "Apply", "Office"],
+                fields: ["Person", "Workplace"],
               },
             ],
           },
