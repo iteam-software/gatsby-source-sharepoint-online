@@ -16,7 +16,7 @@
   </a>
 </p>
 
-Welcome! Use `gatsby-source-sharepoint-online` to access site data from a SharePoint tenant.
+Welcome! Use `gatsby-source-sharepoint-online` to access site data from a SharePoint Online tenant.
 
 ## Getting Started
 
