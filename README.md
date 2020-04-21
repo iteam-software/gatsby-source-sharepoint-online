@@ -1,5 +1,7 @@
 <p align="center">
-  <img alt="Gatsby Plugin: gatsby-source-sharepoint-online" src="docs/lockup.png" />
+  <a href="/">
+    <img alt="Gatsby Plugin: gatsby-source-sharepoint-online" src="docs/lockup.png" />
+  </a>
 </p>
 
 <h1 align="center">gatsby-source-sharepoint-online</h1>
@@ -70,14 +72,31 @@ module.exports = {
 
 ## Options
 
-| Name      | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| host      | string | `required` The SharePoint Online host where the sites to access are hosted. For example, `contoso.sharepoint.com`                                                                                                                                                                                                                                                                                                                                                                                                    |
-| appId     | string | `required` The App Registration Application (client) ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| appSecret | string | `required` The plugin uses a `client_credentials` OAuth2 grant to authenticated with Microsoft Graph. This is a secret associated with the App Registration identified by `appId`.                                                                                                                                                                                                                                                                                                                                   |
-| tenantId  | string | `required` The Azure Directory (tenant) ID that SharePoint and the App Registration belong to.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| sites     | array  | The sites to source data from. Each site must have a `string` name, a `string` relativePath to the site from the `host` (please see the [Microsoft docs](https://docs.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http#access-a-site-by-server-relative-url) for more info), and an `array` called lists containing the lists to load items from. The list items must include a `string` title and an `array` of strings called fields. The fields you list will be expanded and made available. |
+### Root Schema
 
-## Contributing
+| Name      | Type   | Description                                                                                    |
+| --------- | ------ | ---------------------------------------------------------------------------------------------- |
+| host      | string | `required` The SharePoint Online host where the sites to access are hosted.                    |
+| appId     | string | `required` The App Registration Application (client) ID.                                       |
+| appSecret | string | `required` The secret associated with the App Registration identified by `appId`.              |
+| tenantId  | string | `required` The Azure Directory (tenant) ID that SharePoint and the App Registration belong to. |
+| sites     | site[] | The sites to source data from.                                                                 |
 
-TODO: contributing documentation
+### Site Schema
+
+| Name         | Type   | Description                                                                                                                                                        |
+| ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name         | string | `required` The name of the SharePoint site. This is used for the node type.                                                                                        |
+| relativePath | string | `required` The [relative url](https://docs.microsoft.com/en-us/graph/api/site-get?view=graph-rest-1.0&tabs=http#access-a-site-by-server-relative-url) of the site. |
+| lists        | list[] | The SharePoint lists to load data from.                                                                                                                            |
+
+### List Schema
+
+| Name   | Type     | Description                                                                                                    |
+| ------ | -------- | -------------------------------------------------------------------------------------------------------------- |
+| title  | string   | `required` The title of the SharePoint list.                                                                   |
+| fields | string[] | The names of the fields to [expand](https://docs.microsoft.com/en-us/graph/query-parameters#expand-parameter). |
+
+## Join the Community
+
+Chat with members of the community via [Slack!](https://join.slack.com/t/gatsby-source-sp/shared_invite/zt-dnxgby7a-mFcbomvUiSvXk2RGnmDXyg)
