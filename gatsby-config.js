@@ -5,25 +5,20 @@ module.exports = {
     {
       resolve: "gatsby-source-sharepoint-online",
       options: {
-        host: "westloan.sharepoint.com",
+        host: "iteamnm.sharepoint.com",
         appId: process.env.AppId,
         appSecret: process.env.AppSecret,
         tenantId: process.env.TenantId,
         sites: [
           {
-            name: "GatsbySourceTest",
-            relativePath: "sites/GatsbySourceTest",
+            name: "gatsby-source-sharepoint-online",
+            relativePath: "sites/gatsby-source-sharepoint-online",
             lists: [
               {
                 title: "People",
                 fields: ["Person", "Apply", "Office"],
               },
             ],
-          },
-          {
-            name: "Tech Team",
-            relativePath: "sites/TechTeam",
-            lists: [],
           },
         ],
       },
