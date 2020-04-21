@@ -16,4 +16,54 @@
   </a>
 </p>
 
-Welcome! `gatsby-source-sharepoint-online` exposes data to Gatsby from a sharepoint online tenant.
+Welcome! Use `gatsby-source-sharepoint-online` to access site data from a SharePoint tenant.
+
+## Getting Started
+
+1. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) and [grant admin consent](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent) to the **Microsoft Graph: Sites.Read.All** application permission. You must use an application permission type for this plugin.
+2. Create a secret in your App Registration for use with the plugin.
+3. Use a package manager like `yarn` or `npm` to install the plugin.
+
+**yarn**
+
+```
+yarn add gatsby-source-sharepoint-online
+```
+
+**npm**
+
+```
+npm i gatsby-source-sharepoint-online --save
+```
+
+4. Add the plugin config to `gatsby-config.js`
+
+```
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-source-sharepoint-online",
+      options: {
+        host: "<domain>.sharepoint.com",
+        appId: <ApplicationId>,
+        appSecret: <ApplicationSecret>
+        tenantId: <TenantId>,
+        sites: [
+          {
+            name: "CoolSharepointSite",
+            relativePath: "sites/CoolSharepointSite",
+            lists: [
+              {
+                title: "Heroes",
+                fields: ["Name", "Power"],
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+};
+```
+
+**NOTE!** Do not put your secrets directly into this file if you intend to source control your application. In this repository we use `dotenv` to load config values from a `.env` file that is excluded from source control.
