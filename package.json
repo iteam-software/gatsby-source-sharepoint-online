@@ -6,7 +6,8 @@
   "scripts": {
     "develop": "npm run build && gatsby develop",
     "start": "npm run develop",
-    "build": "babel src -d plugins/gatsby-source-sharepoint-online --ignore src/**/*.test.js --config-file ./config/babel.config.js",
+    "build": "webpack",
+    "clean": "rimraf -rf ./plugins",
     "test": "jest"
   },
   "repository": {
