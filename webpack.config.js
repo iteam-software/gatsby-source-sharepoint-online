@@ -10,7 +10,7 @@ const outputPath = path.resolve(
 module.exports = {
   mode: "production",
   target: "node",
-  entry: "./src/gatsby-node.js",
+  entry: "./src",
   output: {
     filename: "gatsby-node.js",
     path: outputPath,
