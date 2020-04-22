@@ -1,4 +1,4 @@
-const { sourceNodes } = require("../gatsby-node");
+const { sourceNodes } = require("..");
 
 describe("Gatsby Node Hook", () => {
   test("should load all lists for a given site.", (done) => {
