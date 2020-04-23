@@ -22,11 +22,11 @@ exports.sourceNodes = function sourceNodes(helpers, config, callback) {
   const resources = sites.reduce((acc, current) => {
     const { lists = [] } = current;
 
-    const listResources = lists
+    const listRequests = lists
       .filter((item) => listResource.validate(item))
       .map(listResource.requestFactory(host, current, client, helpers));
 
-    acc.push(...listResources);
+    acc.push(...listRequests);
 
     return acc;
   }, []);
