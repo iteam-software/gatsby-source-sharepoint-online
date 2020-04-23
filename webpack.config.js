@@ -41,6 +41,10 @@ module.exports = {
         to: outputPath,
       },
       {
+        from: "index.js",
+        to: outputPath,
+      },
+      {
         from: "package.json",
         to: outputPath,
         transform(content, path) {

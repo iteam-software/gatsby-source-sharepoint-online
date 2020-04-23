@@ -2,7 +2,6 @@
   "name": "gatsby-source-sharepoint-online",
   "version": "0.0.1",
   "description": "Sources data for Gatsby from Sharepoint Online.",
-  "main": "gatsby-node.js",
   "scripts": {
     "develop": "npm run build && gatsby develop",
     "start": "npm run develop",
@@ -20,7 +19,10 @@
     "gatsby-plugin",
     "sharepoint"
   ],
-  "author": "Matt Lynam <mlynam@iteamnm.com>",
+  "author": "iTEAM Software <software@iteamnm.com> (https://github.com/iteam-software)",
+  "contributors": [
+    "Matt Lynam <mlynam@iteamnm.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online/issues"
