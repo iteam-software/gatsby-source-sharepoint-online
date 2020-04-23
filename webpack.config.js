@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 const outputPath = path.resolve(
   __dirname,
@@ -10,12 +11,13 @@ const outputPath = path.resolve(
 module.exports = {
   mode: "production",
   target: "node",
-  entry: "./src",
+  entry: ["isomorphic-fetch", "./src"],
   output: {
     filename: "gatsby-node.js",
     path: outputPath,
     libraryTarget: "commonjs2",
   },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {

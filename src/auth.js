@@ -1,4 +1,3 @@
-const fetch = require("isomorphic-fetch");
 const qs = require("query-string");
 
 class NodeAuthenticationProvider {
@@ -6,19 +5,19 @@ class NodeAuthenticationProvider {
    * The Azure App Registration id.
    * @type {string}
    */
-  appId;
+  appId = null;
 
   /**
    * The Azure App Registration secret.
    * @type {string}
    */
-  appSecret;
+  appSecret = null;
 
   /**
    * The Azure tenant id.
    * @type {string}
    */
-  tenantId;
+  tenantId = null;
 
   /**
    * Use an Azure App Registration credential to create a NodeAuthenticationProvider.

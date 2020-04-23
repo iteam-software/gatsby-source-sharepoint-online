@@ -1,5 +1,3 @@
-require("isomorphic-fetch");
-
 const { Client } = require("@microsoft/microsoft-graph-client");
 const NodeAuthenticationProvider = require("./auth");
 
