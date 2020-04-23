@@ -17,7 +17,7 @@ exports.sourceNodes = function sourceNodes(helpers, config, callback) {
     createContentDigest,
     actions: { createNode },
   } = helpers;
-  const { plugins, host, sites, ...creds } = config;
+  const { plugins, host, sites = [], ...creds } = config;
   const client = createClient(creds);
 
   /**
@@ -28,6 +28,8 @@ exports.sourceNodes = function sourceNodes(helpers, config, callback) {
     if (!site) {
       throw new Error("site must be defined.");
     }
+
+    const { lists = [] } = site;
 
     /**
      * Process a site list.
@@ -76,7 +78,7 @@ exports.sourceNodes = function sourceNodes(helpers, config, callback) {
           },
         });
 
-        return Promise.all(site.lists.map((list) => processList(siteId, list)));
+        return Promise.all(lists.map((list) => processList(siteId, list)));
       });
   };
 
