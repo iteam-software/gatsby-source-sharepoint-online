@@ -45,6 +45,10 @@ module.exports = {
         to: outputPath,
       },
       {
+        from: "README.md",
+        to: outputPath,
+      },
+      {
         from: "package.json",
         to: outputPath,
         transform(content, path) {
