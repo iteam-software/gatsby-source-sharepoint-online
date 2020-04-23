@@ -11,7 +11,7 @@ const { createClient } = require("./client");
  * @param {Helpers} helpers Gatsby Node Helpers.
  * @param {any} config Config object provided in the plugin config.
  */
-function sourceNodes(helpers, config, callback) {
+exports.sourceNodes = function sourceNodes(helpers, config, callback) {
   const {
     createNodeId,
     createContentDigest,
@@ -81,6 +81,4 @@ function sourceNodes(helpers, config, callback) {
   };
 
   Promise.all(sites.map(processSite)).catch(console.error).finally(callback);
-}
-
-exports.sourceNodes = sourceNodes;
+};
