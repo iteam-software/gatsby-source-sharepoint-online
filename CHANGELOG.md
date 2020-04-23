@@ -18,4 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code style files (.eslintrc, .prettierrc)
 - Webpack based build supporting cutting edge Javascript
 
-[unreleased]: https://github.com/iteam-software/gatsby-source-sharepoint-online/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/iteam-consulting/gatsby-source-sharepoint-online/compare/0.0.1...HEAD
