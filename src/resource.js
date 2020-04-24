@@ -28,13 +28,14 @@ class Resource {
   }
 
   /**
-   * Validates a resource item such as a list or drive definition.item && item.title
+   * Validates a resource item such as a list or drive definition.
    * @param {any} item The item to validate.
    */
   validate(item) {
-    const isValid = this.type !== "drive" || (item && item.title);
+    const isValid =
+      this.type !== "drive" && item !== undefined && Boolean(item.title);
     if (!isValid) {
-      console.warn(`Invalid resource definition: ${JSON.stringify(item)}`);
+      console.warn(`Invalid resource item: ${JSON.stringify(item)}`);
     }
 
     return isValid;

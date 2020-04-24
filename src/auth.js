@@ -1,4 +1,4 @@
-const qs = require("query-string");
+import qs from "query-string";
 
 class NodeAuthenticationProvider {
   /**

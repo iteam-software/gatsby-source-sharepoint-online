@@ -6,7 +6,11 @@ const NodeAuthenticationProvider = require("./auth");
  * @param {{ appId: string, appSecret: string, tenantId: string }} options The plugin options.
  * @returns {Client} The Microsoft Graphl client.
  */
-function createClient(options = {}) {
+function createClient(options) {
+  if (!options) {
+    throw new Error("Argument null or undefined: options");
+  }
+
   return Client.initWithMiddleware({
     authProvider: new NodeAuthenticationProvider(
       options.appId,
@@ -16,4 +20,4 @@ function createClient(options = {}) {
   });
 }
 
-module.exports.createClient = createClient;
+exports.createClient = createClient;

@@ -16,6 +16,18 @@ describe("NodeAuthenticationProvider", () => {
     expect(token).toBeDefined();
   });
 
+  test("should throw for failed token request", async () => {
+    // Arrange
+    const provider = new NodeAuthenticationProvider(
+      "testApp",
+      "testSecret",
+      "testTenant"
+    );
+
+    // Act & Assert
+    await expect(() => provider.getAccessToken()).rejects.toThrow("400");
+  });
+
   test("should throw if invalid config options are supplied", () => {
     expect(() => new NodeAuthenticationProvider()).toThrow(
       "Invalid appId, appSecret, or tenantId."
