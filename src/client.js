@@ -1,5 +1,5 @@
 const { Client } = require("@microsoft/microsoft-graph-client");
-const NodeAuthenticationProvider = require("./auth");
+const { NodeAuthenticationProvider } = require("./auth");
 
 /**
  * Create a Microsot Graph Client to use for sourcing.

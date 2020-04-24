@@ -65,4 +65,4 @@ class NodeAuthenticationProvider {
   }
 }
 
-module.exports = NodeAuthenticationProvider;
+exports.NodeAuthenticationProvider = NodeAuthenticationProvider;

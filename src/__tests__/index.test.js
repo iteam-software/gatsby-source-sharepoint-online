@@ -1,6 +1,6 @@
 const { sourceNodes } = require("..");
 
-describe("e2e", () => {
+describe("sourceNodes hook", () => {
   test("should load all lists for a given site.", (done) => {
     // Arrange
     const config = {

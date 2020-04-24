@@ -1,4 +1,4 @@
-const NodeAuthenticationProvider = require("../auth");
+const { NodeAuthenticationProvider } = require("../auth");
 
 describe("NodeAuthenticationProvider", () => {
   test("should provide a token", async () => {
