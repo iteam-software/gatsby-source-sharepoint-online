@@ -49,37 +49,31 @@ class Resource {
    * @param {Helpers} helpers The Gatsby sourceNode API helpers.
    */
   requestFactory(host, site, graph, helpers) {
-    return (item) => {
-      const request = graph
+    return async (item) => {
+      let request = graph
         .api(generateListItemsUrl(site, item, host))
         .expand("fields");
 
       if (item.fields && Array.isArray(item.fields)) {
-        request.expand(`fields($select=${item.fields.join(",")})`);
+        request = request.expand(`fields($select=${item.fields.join(",")})`);
       }
 
-      return {
-        get: () => {
-          return request.get().then((entry) => {
-            entry.value.forEach((data) => {
-              const normalizedListName = item.title.replace(" ", "");
-              const type = `${site.name}${normalizedListName}ListItem`;
+      const normalizedListName = item.title.replace(" ", "");
+      const entry = await request.get();
 
-              helpers.actions.createNode({
-                data,
-                id: helpers.createNodeId(item.title + data.id),
-                parent: null,
-                children: [],
-                internal: {
-                  type,
-                  content: JSON.stringify(data),
-                  contentDigest: helpers.createContentDigest(data),
-                },
-              });
-            });
-          });
-        },
-      };
+      entry.value.forEach((data) => {
+        helpers.actions.createNode({
+          data,
+          id: helpers.createNodeId(data.id),
+          parent: null,
+          children: [],
+          internal: {
+            type: `${site.name}${normalizedListName}ListItem`,
+            content: JSON.stringify(data),
+            contentDigest: helpers.createContentDigest(data),
+          },
+        });
+      });
     };
   }
 }

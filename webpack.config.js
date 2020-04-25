@@ -15,6 +15,7 @@ module.exports = {
   output: {
     filename: "gatsby-node.js",
     path: outputPath,
+    library: "gatsby-source-sharepoint-online",
     libraryTarget: "commonjs2",
   },
   externals: [nodeExternals()],
@@ -54,7 +55,7 @@ module.exports = {
         transform(content, path) {
           const pkg = JSON.parse(content.toString("utf-8"));
           delete pkg.devDependencies;
-          return new Buffer(JSON.stringify(pkg, null, 2), "utf-8");
+          return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
         },
       },
     ]),

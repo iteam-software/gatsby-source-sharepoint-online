@@ -7,7 +7,7 @@ const GraphRequest = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         value: [
           {
-            id: (Math.random() * 100000).toString(16),
+            id: Math.floor(Math.random() * 100000).toString(16),
           },
         ],
       });
