@@ -1,12 +1,23 @@
+jest.mock("isomorphic-fetch");
+const fetch = require("isomorphic-fetch");
+const { Response } = require("node-fetch");
 const { NodeAuthenticationProvider } = require("../auth");
 
 describe("NodeAuthenticationProvider", () => {
   test("should provide a token", async () => {
     // Arrange
+    fetch.mockReturnValue(
+      Promise.resolve(
+        new Response(JSON.stringify({ access_token: "token" }), {
+          status: 200,
+          statusText: "OK",
+        })
+      )
+    );
     const provider = new NodeAuthenticationProvider(
-      process.env.AppId,
-      process.env.AppSecret,
-      process.env.TenantId
+      "testApp",
+      "testSecret",
+      "testTenant"
     );
 
     // Act
@@ -18,6 +29,14 @@ describe("NodeAuthenticationProvider", () => {
 
   test("should throw for failed token request", async () => {
     // Arrange
+    fetch.mockReturnValue(
+      Promise.resolve(
+        new Response(null, {
+          status: 400,
+          statusText: "BadRequest",
+        })
+      )
+    );
     const provider = new NodeAuthenticationProvider(
       "testApp",
       "testSecret",

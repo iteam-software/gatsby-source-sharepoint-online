@@ -116,7 +116,20 @@ describe("[Resource]", () => {
     const request = resource.requestFactory("test", "test", client, helpers);
 
     // Act
-    await request({ title: "SuperDuper" });
+    await request({ title: "Heroes", fields: ["Superpower"] });
+
+    // Assert
+    expect(helpers.actions.createNode).toHaveBeenCalledTimes(1);
+  });
+
+  test("should create a get request from the request factory with no fields", async () => {
+    // Arrange
+    const resource = new Resource("list");
+    const client = createClient(baseConfig);
+    const request = resource.requestFactory("test", "test", client, helpers);
+
+    // Act
+    await request({ title: "Heroes" });
 
     // Assert
     expect(helpers.actions.createNode).toHaveBeenCalledTimes(1);

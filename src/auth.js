@@ -1,4 +1,5 @@
 const qs = require("query-string");
+const fetch = require("isomorphic-fetch");
 
 exports.NodeAuthenticationProvider = class {
   /**
