@@ -5,7 +5,7 @@ module.exports = {
     {
       resolve: "gatsby-source-sharepoint-online",
       options: {
-        host: "iteamnm.sharepoint.com",
+        host: process.env.Host,
         appId: process.env.AppId,
         appSecret: process.env.AppSecret,
         tenantId: process.env.TenantId,

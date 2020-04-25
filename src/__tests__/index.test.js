@@ -1,17 +1,34 @@
 const { sourceNodes } = require("..");
 
-describe("Gatsby Node Hook", () => {
-  test("should load all lists for a given site.", (done) => {
+describe("sourceNodes hook", () => {
+  const helpers = {
+    createNodeId: jest.fn(),
+    createContentDigest: jest.fn(),
+    actions: {
+      createNode: jest.fn(),
+    },
+  };
+
+  const baseConfig = {
+    host: "TestHost",
+    appId: "TestApp",
+    appSecret: "TestSecret",
+    tenantId: "TestTenant",
+  };
+
+  afterEach(() => {
+    helpers.createNodeId.mockReset();
+    helpers.createContentDigest.mockReset();
+    helpers.actions.createNode.mockReset();
+  });
+
+  test("should load all lists for a given site.", async () => {
     // Arrange
     const config = {
-      host: "iteamnm.sharepoint.com",
-      appId: process.env.AppId,
-      appSecret: process.env.AppSecret,
-      tenantId: process.env.TenantId,
       sites: [
         {
-          name: "gatsby-source-sharepoint-online",
-          relativePath: "sites/gatsby-source-sharepoint-online",
+          name: "TestSite",
+          relativePath: "sites/TestSite",
           lists: [
             {
               title: "People",
@@ -20,71 +37,64 @@ describe("Gatsby Node Hook", () => {
           ],
         },
       ],
-    };
-    const helpers = {
-      createNodeId: jest.fn(),
-      createContentDigest: jest.fn(),
-      actions: {
-        createNode: jest.fn(),
-      },
+      ...baseConfig,
     };
 
-    // Act & Assert
-    sourceNodes(helpers, config, () => {
-      expect(helpers.actions.createNode).toHaveBeenCalled();
-      done();
-    });
+    // Act
+    await sourceNodes(helpers, config);
+
+    // Assert
+    expect(helpers.actions.createNode).toHaveBeenCalled();
   });
 
-  test("should run when sites is undefined", (done) => {
+  test("should load data for list when no fields are provided.", async () => {
     // Arrange
     const config = {
-      host: "iteamnm.sharepoint.com",
-      appId: process.env.AppId,
-      appSecret: process.env.AppSecret,
-      tenantId: process.env.TenantId,
-    };
-    const helpers = {
-      createNodeId: jest.fn(),
-      createContentDigest: jest.fn(),
-      actions: {
-        createNode: jest.fn(),
-      },
-    };
-
-    // Act & Assert
-    sourceNodes(helpers, config, () => {
-      expect(helpers.actions.createNode).not.toHaveBeenCalled();
-      done();
-    });
-  });
-
-  test("should run when lists is undefined", (done) => {
-    // Arrange
-    const config = {
-      host: "iteamnm.sharepoint.com",
-      appId: process.env.AppId,
-      appSecret: process.env.AppSecret,
-      tenantId: process.env.TenantId,
       sites: [
         {
-          name: "gatsby-source-sharepoint-online",
-          relativePath: "sites/gatsby-source-sharepoint-online",
+          name: "TestSite",
+          relativePath: "sites/TestSite",
+          lists: [
+            {
+              title: "People",
+            },
+          ],
         },
       ],
-    };
-    const helpers = {
-      createNodeId: jest.fn(),
-      createContentDigest: jest.fn(),
-      actions: {
-        createNode: jest.fn(),
-      },
+      ...baseConfig,
     };
 
-    // Act & Assert
-    sourceNodes(helpers, config, () => {
-      expect(helpers.actions.createNode).toHaveBeenCalledTimes(1);
-      done();
-    });
+    // Act
+    await sourceNodes(helpers, config);
+
+    // Assert
+    expect(helpers.actions.createNode).toHaveBeenCalled();
+  });
+
+  test("should run when sites is undefined", async () => {
+    // Act
+    await sourceNodes(helpers, baseConfig);
+
+    // Assert
+    expect(helpers.actions.createNode).not.toHaveBeenCalled();
+  });
+
+  test("should run when lists is undefined", async () => {
+    // Arrange
+    const config = {
+      sites: [
+        {
+          name: "TestSite",
+          relativePath: "sites/TestSite",
+        },
+      ],
+      ...baseConfig,
+    };
+
+    // Act
+    await sourceNodes(helpers, config);
+
+    // Assert
+    expect(helpers.actions.createNode).not.toHaveBeenCalled();
   });
 });

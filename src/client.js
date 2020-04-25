@@ -1,12 +1,16 @@
 const { Client } = require("@microsoft/microsoft-graph-client");
-const NodeAuthenticationProvider = require("./auth");
+const { NodeAuthenticationProvider } = require("./auth");
 
 /**
  * Create a Microsot Graph Client to use for sourcing.
  * @param {{ appId: string, appSecret: string, tenantId: string }} options The plugin options.
  * @returns {Client} The Microsoft Graphl client.
  */
-function createClient(options = {}) {
+function createClient(options) {
+  if (!options) {
+    throw new Error("Argument null or undefined: options");
+  }
+
   return Client.initWithMiddleware({
     authProvider: new NodeAuthenticationProvider(
       options.appId,
@@ -16,4 +20,4 @@ function createClient(options = {}) {
   });
 }
 
-module.exports.createClient = createClient;
+exports.createClient = createClient;

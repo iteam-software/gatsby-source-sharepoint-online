@@ -1,4 +1,4 @@
-const NodeAuthenticationProvider = require("../auth");
+const { NodeAuthenticationProvider } = require("../auth");
 
 describe("NodeAuthenticationProvider", () => {
   test("should provide a token", async () => {
@@ -14,6 +14,18 @@ describe("NodeAuthenticationProvider", () => {
 
     // Assert
     expect(token).toBeDefined();
+  });
+
+  test("should throw for failed token request", async () => {
+    // Arrange
+    const provider = new NodeAuthenticationProvider(
+      "testApp",
+      "testSecret",
+      "testTenant"
+    );
+
+    // Act & Assert
+    await expect(() => provider.getAccessToken()).rejects.toThrow("400");
   });
 
   test("should throw if invalid config options are supplied", () => {

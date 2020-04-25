@@ -1,6 +1,6 @@
 const qs = require("query-string");
 
-class NodeAuthenticationProvider {
+exports.NodeAuthenticationProvider = class {
   /**
    * The Azure App Registration id.
    * @type {string}
@@ -63,6 +63,4 @@ class NodeAuthenticationProvider {
     const payload = await response.json();
     return payload.access_token;
   }
-}
-
-module.exports = NodeAuthenticationProvider;
+};
