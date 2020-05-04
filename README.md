@@ -1,6 +1,6 @@
 <p align="center">
   <a href="/">
-    <img alt="Gatsby Plugin: gatsby-source-sharepoint-online" src="docs/lockup.png" />
+    <img alt="Gatsby Plugin: gatsby-source-sharepoint-online" src="assets/lockup.png" />
   </a>
 </p>
 
