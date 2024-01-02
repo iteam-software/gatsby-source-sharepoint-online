@@ -107,4 +107,4 @@ dist
 public/
 
 # Build results
-plugins/gatsby-source-sharepoint-online/
+plugins/**

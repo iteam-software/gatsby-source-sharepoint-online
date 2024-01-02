@@ -27,7 +27,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            plugins: ["@babel/plugin-proposal-class-properties"],
+            plugins: ["@babel/plugin-transform-class-properties"],
             presets: [["@babel/preset-env", { targets: { esmodules: true } }]],
           },
         },
@@ -36,28 +36,30 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyPlugin([
-      {
-        from: "LICENSE",
-        to: outputPath,
-      },
-      {
-        from: "index.js",
-        to: outputPath,
-      },
-      {
-        from: "README.md",
-        to: outputPath,
-      },
-      {
-        from: "package.json",
-        to: outputPath,
-        transform(content, path) {
-          const pkg = JSON.parse(content.toString("utf-8"));
-          delete pkg.devDependencies;
-          return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "LICENSE",
+          to: outputPath,
         },
-      },
-    ]),
+        {
+          from: "index.js",
+          to: outputPath,
+        },
+        {
+          from: "README.md",
+          to: outputPath,
+        },
+        {
+          from: "package.json",
+          to: outputPath,
+          transform(content, path) {
+            const pkg = JSON.parse(content.toString("utf-8"));
+            delete pkg.devDependencies;
+            return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
+          },
+        },
+      ],
+    }),
   ],
 };
