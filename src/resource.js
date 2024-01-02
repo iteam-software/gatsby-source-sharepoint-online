@@ -63,9 +63,12 @@ class Resource {
       const entry = await request.get();
 
       entry.value.forEach((data) => {
+        const id = normalizedListName + data.id;
+        const nodeId = helpers.createNodeId(id);
+        console.log(`"${id}" => "${nodeId}"`);
         helpers.actions.createNode({
           data,
-          id: helpers.createNodeId(normalizedListName + data.id),
+          id: nodeId,
           parent: null,
           children: [],
           internal: {
