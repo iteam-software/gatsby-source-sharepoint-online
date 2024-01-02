@@ -59,20 +59,16 @@ class Resource {
       }
 
       const normalizedListName = item.title.replace(" ", "");
-      const type = `${site.name}${normalizedListName}ListItem`;
       const entry = await request.get();
 
       entry.value.forEach((data) => {
-        const id = normalizedListName + data.id;
-        const nodeId = helpers.createNodeId(id);
-        console.log(`"${id}" => "${nodeId}"`);
         helpers.actions.createNode({
           data,
-          id: nodeId,
+          id: helpers.createNodeId(data.id),
           parent: null,
           children: [],
           internal: {
-            type,
+            type: `${site.name}${normalizedListName}ListItem`,
             content: JSON.stringify(data),
             contentDigest: helpers.createContentDigest(data),
           },
