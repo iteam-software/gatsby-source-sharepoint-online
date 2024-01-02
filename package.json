@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-sharepoint-online",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sources data for Gatsby from Sharepoint Online.",
   "scripts": {
     "develop": "gatsby develop --no-cache",
