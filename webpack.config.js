@@ -19,6 +19,7 @@ module.exports = {
     filename: "gatsby-node.mjs",
     path: outputPath,
     module: true,
+    libraryTarget: "module",
   },
   externals: [nodeExternals()],
   module: {
