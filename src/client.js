@@ -1,5 +1,5 @@
 import { Client } from "@microsoft/microsoft-graph-client";
-import NodeAuthenticationProvider from "./auth.mjs";
+import NodeAuthenticationProvider from "./auth.js";
 
 /**
  * Create a Microsot Graph Client to use for sourcing.

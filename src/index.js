@@ -1,5 +1,5 @@
-import { createClient } from "./client.mjs";
-import Resource from "./resource.mjs";
+import { createClient } from "./client.js";
+import Resource from "./resource.js";
 
 /**
  * @typedef {import('gatsby').SourceNodesArgs} Helpers

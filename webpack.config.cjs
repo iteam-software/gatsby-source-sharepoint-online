@@ -10,22 +10,23 @@ const outputPath = path.resolve(
 
 module.exports = {
   mode: "production",
-  target: "es2020",
-  entry: ["isomorphic-fetch", "./src/index.mjs"],
+  target: "node",
+  entry: ["isomorphic-fetch", "./src/index.js"],
   experiments: {
     outputModule: true,
   },
   output: {
-    filename: "gatsby-node.mjs",
+    filename: "gatsby-node.js",
     path: outputPath,
     module: true,
     libraryTarget: "module",
+    chunkFormat: "module",
   },
   externals: [nodeExternals()],
   module: {
     rules: [
       {
-        test: /\.mjs$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",

@@ -1,7 +1,8 @@
 {
   "name": "gatsby-source-sharepoint-online",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Sources data for Gatsby from Sharepoint Online.",
+  "type": "module",
   "scripts": {
     "develop": "gatsby develop --no-cache",
     "start": "npm run develop",
@@ -17,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iteam-consulting/gatsby-source-sharepoint-online.git"
+    "url": "git+https://github.com/iteam-software/gatsby-source-sharepoint-online.git"
   },
   "keywords": [
     "gatsby",
@@ -30,9 +31,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online/issues"
+    "url": "https://github.com/iteam-software/gatsby-source-sharepoint-online/issues"
   },
-  "homepage": "https://github.com/iteam-consulting/gatsby-source-sharepoint-online#readme",
+  "homepage": "https://github.com/iteam-software/gatsby-source-sharepoint-online#readme",
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^3.0.7",
     "isomorphic-fetch": "^3.0.0",
