@@ -10,13 +10,14 @@ const outputPath = path.resolve(
 
 module.exports = {
   mode: "production",
-  target: "node",
+  target: "es2020",
   entry: ["isomorphic-fetch", "./src/index.mjs"],
+  experiments: {
+    outputModule: true,
+  },
   output: {
     filename: "gatsby-node.mjs",
     path: outputPath,
-    library: "gatsby-source-sharepoint-online",
-    libraryTarget: "commonjs2",
   },
   externals: [nodeExternals()],
   module: {
