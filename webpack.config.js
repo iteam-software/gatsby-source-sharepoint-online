@@ -16,7 +16,7 @@ module.exports = {
     outputModule: true,
   },
   output: {
-    filename: "gatsby-node.mjs",
+    filename: "gatsby-node.js",
     path: outputPath,
   },
   externals: [nodeExternals()],

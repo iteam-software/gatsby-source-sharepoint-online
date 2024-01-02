@@ -64,7 +64,7 @@ export default class Resource {
       entry.value.forEach((data) => {
         helpers.actions.createNode({
           data,
-          id: helpers.createNodeId(data.id),
+          id: helpers.createNodeId(`${normalizedListName}${data.id}`),
           parent: null,
           children: [],
           internal: {
