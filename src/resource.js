@@ -64,7 +64,7 @@ class Resource {
       entry.value.forEach((data) => {
         helpers.actions.createNode({
           data,
-          id: helpers.createNodeId(`${normalizedListName}_${data.id}`),
+          id: helpers.createNodeId(`${normalizedListName}${data.id}`),
           parent: null,
           children: [],
           internal: {
