@@ -1,5 +1,5 @@
-const { createClient } = require("./client");
-const { Resource } = require("./resource");
+import { createClient } from "./client.mjs";
+import Resource from "./resource.mjs";
 
 /**
  * @typedef {import('gatsby').SourceNodesArgs} Helpers
@@ -10,7 +10,7 @@ const { Resource } = require("./resource");
  * @param {Helpers} helpers Gatsby Node Helpers.
  * @param {any} config Config object provided in the plugin config.
  */
-exports.sourceNodes = async (helpers, config) => {
+export const sourceNodes = async (helpers, config) => {
   const { host, sites = [], ...creds } = config;
   const client = createClient(creds);
   const listResource = new Resource("list");

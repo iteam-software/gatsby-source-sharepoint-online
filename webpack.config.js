@@ -11,9 +11,9 @@ const outputPath = path.resolve(
 module.exports = {
   mode: "production",
   target: "node",
-  entry: ["isomorphic-fetch", "./src"],
+  entry: ["isomorphic-fetch", "./src/index.mjs"],
   output: {
-    filename: "gatsby-node.js",
+    filename: "gatsby-node.mjs",
     path: outputPath,
     library: "gatsby-source-sharepoint-online",
     libraryTarget: "commonjs2",
@@ -22,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.mjs$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",

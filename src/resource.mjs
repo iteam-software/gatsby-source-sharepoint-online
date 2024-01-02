@@ -8,7 +8,7 @@ const generateListItemsUrl = (site, list, host) => {
   return `${base}:/${site.relativePath}:/lists/${encodeURI(list.title)}/items`;
 };
 
-class Resource {
+export default class Resource {
   /**
    * The type of this resource.
    * @type {'list' | 'drive'}
@@ -77,5 +77,3 @@ class Resource {
     };
   }
 }
-
-exports.Resource = Resource;

@@ -1,12 +1,12 @@
-const { Client } = require("@microsoft/microsoft-graph-client");
-const { NodeAuthenticationProvider } = require("./auth");
+import { Client } from "@microsoft/microsoft-graph-client";
+import NodeAuthenticationProvider from "./auth.mjs";
 
 /**
  * Create a Microsot Graph Client to use for sourcing.
  * @param {{ appId: string, appSecret: string, tenantId: string }} options The plugin options.
  * @returns {Client} The Microsoft Graphl client.
  */
-function createClient(options) {
+export const createClient = (options) => {
   if (!options) {
     throw new Error("Argument null or undefined: options");
   }
@@ -18,6 +18,4 @@ function createClient(options) {
       options.tenantId
     ),
   });
-}
-
-exports.createClient = createClient;
+};

@@ -1,7 +1,7 @@
-const qs = require("query-string");
-const fetch = require("isomorphic-fetch");
+import qs from "query-string";
+import fetch from "isomorphic-fetch";
 
-exports.NodeAuthenticationProvider = class {
+export default class NodeAuthenticationProvider {
   /**
    * The Azure App Registration id.
    * @type {string}
@@ -64,4 +64,4 @@ exports.NodeAuthenticationProvider = class {
     const payload = await response.json();
     return payload.access_token;
   }
-};
+}
