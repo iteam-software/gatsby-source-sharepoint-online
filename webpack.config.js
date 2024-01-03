@@ -16,10 +16,12 @@ export default {
   target: "node",
   entry: ["isomorphic-fetch", "./src/index.js"],
   output: {
-    filename: "gatsby-node.cjs",
+    filename: "gatsby-node.js",
     path: outputPath,
-    library: "gatsby-source-sharepoint-online",
-    libraryTarget: "commonjs2",
+    library: {
+      name: "gatsby-source-sharepoint-online",
+      type: "commonjs2",
+    },
   },
   externals: [nodeExternals()],
   module: {
@@ -59,6 +61,7 @@ export default {
           transform(content, path) {
             const pkg = JSON.parse(content.toString("utf-8"));
             delete pkg.devDependencies;
+            delete pkg.type;
             return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
           },
         },
