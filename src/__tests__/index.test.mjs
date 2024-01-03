@@ -1,5 +1,5 @@
-const { Resource } = require("../resource");
-const { sourceNodes } = require("..");
+import Resource from "../resource.mjs";
+import { sourceNodes } from "..";
 
 jest.mock("../resource");
 const consoleError = console.error;
@@ -9,15 +9,15 @@ describe("sourceNodes hook", () => {
     createNodeId: jest.fn(),
     createContentDigest: jest.fn(),
     actions: {
-      createNode: jest.fn(),
-    },
+      createNode: jest.fn()
+    }
   };
 
   const baseConfig = {
     host: "TestHost",
     appId: "TestApp",
     appSecret: "TestSecret",
-    tenantId: "TestTenant",
+    tenantId: "TestTenant"
   };
 
   afterEach(() => {
@@ -31,11 +31,11 @@ describe("sourceNodes hook", () => {
     // Arrange
     Resource.mockImplementation(() => ({
       requestFactory: () => () =>
-        new Promise((res, rej) => {
+        new Promise((res) => {
           helpers.actions.createNode();
           res();
         }),
-      validate: () => true,
+      validate: () => true
     }));
     const config = {
       sites: [
@@ -45,16 +45,16 @@ describe("sourceNodes hook", () => {
           lists: [
             {
               title: "People",
-              fields: ["Person", "Workplace"],
+              fields: ["Person", "Workplace"]
             },
             {
               title: "Hero",
-              fields: ["Superpower"],
-            },
-          ],
-        },
+              fields: ["Superpower"]
+            }
+          ]
+        }
       ],
-      ...baseConfig,
+      ...baseConfig
     };
 
     // Act
@@ -68,11 +68,11 @@ describe("sourceNodes hook", () => {
     // Arrange
     Resource.mockImplementation(() => ({
       requestFactory: () => () =>
-        new Promise((res, rej) => {
+        new Promise((res) => {
           helpers.actions.createNode();
           res();
         }),
-      validate: () => true,
+      validate: () => true
     }));
     const config = {
       sites: [
@@ -81,12 +81,12 @@ describe("sourceNodes hook", () => {
           relativePath: "sites/TestSite",
           lists: [
             {
-              title: "People",
-            },
-          ],
-        },
+              title: "People"
+            }
+          ]
+        }
       ],
-      ...baseConfig,
+      ...baseConfig
     };
 
     // Act
@@ -108,11 +108,11 @@ describe("sourceNodes hook", () => {
     // Arrange
     Resource.mockImplementation(() => ({
       requestFactory: () => () =>
-        new Promise((res, rej) => {
+        new Promise((res) => {
           helpers.actions.createNode();
           res();
         }),
-      validate: () => false,
+      validate: () => false
     }));
     const config = {
       sites: [
@@ -121,12 +121,12 @@ describe("sourceNodes hook", () => {
           relativePath: "sites/TestSite",
           lists: [
             {
-              name: "People",
-            },
-          ],
-        },
+              name: "People"
+            }
+          ]
+        }
       ],
-      ...baseConfig,
+      ...baseConfig
     };
 
     // Act
@@ -144,7 +144,7 @@ describe("sourceNodes hook", () => {
         new Promise((res, rej) => {
           rej("failure");
         }),
-      validate: () => true,
+      validate: () => true
     }));
     const config = {
       sites: [
@@ -153,12 +153,12 @@ describe("sourceNodes hook", () => {
           relativePath: "sites/TestSite",
           lists: [
             {
-              title: "People",
-            },
-          ],
-        },
+              title: "People"
+            }
+          ]
+        }
       ],
-      ...baseConfig,
+      ...baseConfig
     };
 
     // Act
@@ -175,10 +175,10 @@ describe("sourceNodes hook", () => {
       sites: [
         {
           name: "TestSite",
-          relativePath: "sites/TestSite",
-        },
+          relativePath: "sites/TestSite"
+        }
       ],
-      ...baseConfig,
+      ...baseConfig
     };
 
     // Act

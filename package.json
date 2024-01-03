@@ -1,10 +1,9 @@
 {
   "name": "gatsby-source-sharepoint-online",
-  "version": "1.0.21",
+  "version": "2.0.0",
   "description": "Sources data for Gatsby from Sharepoint Online.",
-  "type": "module",
   "scripts": {
-    "develop": "gatsby develop --no-cache",
+    "develop": "gatsby develop",
     "start": "npm run develop",
     "prestart": "webpack",
     "build": "webpack",

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - End to end testing support via cypress.
-- `pages/index.js` for e2e testing. The page loads and renders list items.
+- `pages/index.mjs` for e2e testing. The page loads and renders list items.
 
 ### Changed
 - `createClient(...)` now **requires** an options argument.

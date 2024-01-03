@@ -1,32 +1,28 @@
-import path from "path";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
-import nodeExternals from "webpack-node-externals";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = path.resolve(
   __dirname,
   "plugins/gatsby-source-sharepoint-online"
 );
 
-export default {
+module.exports = {
   mode: "production",
-  entry: ["isomorphic-fetch", "./src/index.js"],
+  entry: ["isomorphic-fetch", "./src/index.mjs"],
   output: {
-    filename: "gatsby-node.js",
-    path: outputPath,
-    module: true,
+    filename: "gatsby-node.mjs",
+    libraryTarget: "module",
+    path: outputPath
   },
   experiments: {
-    outputModule: true,
+    outputModule: true
   },
-  externalsPresets: { node: true },
   externals: [
     nodeExternals({
-      importType: "module",
-    }),
+      importType: "module"
+    })
   ],
   module: {
     rules: [
@@ -39,17 +35,13 @@ export default {
             plugins: ["@babel/plugin-transform-class-properties"],
             presets: [
               [
-                "@babel/preset-env",
-                {
-                  targets: { esmodules: true },
-                  modules: false,
-                },
-              ],
-            ],
-          },
-        },
-      },
-    ],
+                "@babel/preset-env"
+              ]
+            ]
+          }
+        }
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -57,26 +49,22 @@ export default {
       patterns: [
         {
           from: "LICENSE",
-          to: outputPath,
-        },
-        {
-          from: "index.js",
-          to: outputPath,
+          to: outputPath
         },
         {
           from: "README.md",
-          to: outputPath,
+          to: outputPath
         },
         {
           from: "package.json",
           to: outputPath,
-          transform(content, path) {
+          transform(content, _) {
             const pkg = JSON.parse(content.toString("utf-8"));
             delete pkg.devDependencies;
             return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
-          },
-        },
-      ],
-    }),
-  ],
-}
+          }
+        }
+      ]
+    })
+  ]
+};

@@ -1,4 +1,4 @@
-const { createClient } = require("../client");
+import { createClient } from "../client.mjs";
 
 describe("[createClient]", () => {
   test("should throw for undefined or null options", () => {

@@ -1,7 +1,7 @@
 jest.mock("isomorphic-fetch");
-const fetch = require("isomorphic-fetch");
-const { Response } = require("node-fetch");
-const { NodeAuthenticationProvider } = require("../auth");
+import fetch from "isomorphic-fetch";
+import NodeAuthenticationProvider from "../auth.mjs";
+import { Response } from "node-fetch";
 
 describe("NodeAuthenticationProvider", () => {
   test("should provide a token", async () => {
@@ -10,7 +10,7 @@ describe("NodeAuthenticationProvider", () => {
       Promise.resolve(
         new Response(JSON.stringify({ access_token: "token" }), {
           status: 200,
-          statusText: "OK",
+          statusText: "OK"
         })
       )
     );
@@ -33,7 +33,7 @@ describe("NodeAuthenticationProvider", () => {
       Promise.resolve(
         new Response(null, {
           status: 400,
-          statusText: "BadRequest",
+          statusText: "BadRequest"
         })
       )
     );

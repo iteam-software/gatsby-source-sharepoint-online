@@ -1,11 +1,11 @@
 {
-  "extends": ["plugin:prettier/recommended"],
-  "plugins": ["babel"],
+  "extends": [
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "babel"
+  ],
   "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018
-  },
   "rules": {
     "babel/semi": 1
   }

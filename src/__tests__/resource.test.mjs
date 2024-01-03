@@ -1,5 +1,5 @@
-const { createClient } = require("../client");
-const { Resource } = require("../resource");
+import { createClient } from "../client.mjs";
+import Resource from "../resource.mjs";
 
 const consoleWarn = console.warn;
 
@@ -8,15 +8,15 @@ describe("[Resource]", () => {
     createNodeId: jest.fn(),
     createContentDigest: jest.fn(),
     actions: {
-      createNode: jest.fn(),
-    },
+      createNode: jest.fn()
+    }
   };
 
   const baseConfig = {
     host: "TestHost",
     appId: "TestApp",
     appSecret: "TestSecret",
-    tenantId: "TestTenant",
+    tenantId: "TestTenant"
   };
 
   beforeEach(() => {
@@ -93,7 +93,7 @@ describe("[Resource]", () => {
     // Assert
     expect(isValid).toBe(false);
     expect(console.warn).toHaveBeenCalledWith(
-      'Invalid resource item: {"title":""}'
+      "Invalid resource item: {\"title\":\"\"}"
     );
   });
 

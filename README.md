@@ -38,7 +38,7 @@ yarn add gatsby-source-sharepoint-online
 npm i gatsby-source-sharepoint-online --save
 ```
 
-4. Add the plugin config to `gatsby-config.js`
+4. Add the plugin config to `gatsby-config.mjs`
 
 ```
 module.exports = {

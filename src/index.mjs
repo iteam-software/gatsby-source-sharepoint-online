@@ -1,8 +1,8 @@
-import { createClient } from "./client.js";
-import Resource from "./resource.js";
+import { createClient } from "./client.mjs";
+import Resource from "./resource.mjs";
 
 /**
- * @typedef {import('gatsby').SourceNodesArgs} Helpers
+ * @typedef {import("gatsby").SourceNodesArgs} Helpers
  */
 
 /**
@@ -27,10 +27,10 @@ export const sourceNodes = async (helpers, config) => {
     for (let j = 0; j < lists.length; j++) {
       const list = lists[j];
 
-      reporter.info(`Sourcing nodes for list: ${list[i].title}`);
+      reporter.info(`Sourcing nodes for list: ${JSON.stringify(list)}`);
 
       if (!listResource.validate(list)) {
-        reporter.error(`${list[i].title} is not a valid list.`);
+        reporter.error(`${list.title} is not a valid list.`);
         continue;
       }
 
