@@ -75,7 +75,7 @@ export default class Resource {
         const nodeId = `${normalizedListName}${data.id}`;
         const id = createNodeId(nodeId);
         createNode({
-          data,
+          ...data,
           id,
           parent: null,
           children: [],
