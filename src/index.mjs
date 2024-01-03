@@ -42,7 +42,3 @@ export const sourceNodes = async (helpers, config) => {
     }
   }
 };
-
-export const onPluginInit = ({ reporter }) => {
-  reporter.info(`Hello World!`);
-};
