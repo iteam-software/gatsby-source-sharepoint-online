@@ -72,10 +72,10 @@ export default class Resource {
       }
 
       entry.value.forEach((data) => {
-        const nodeId = `${normalizedListName}${data.id}`;
+        const nodeId = `${type}-${data.id}`;
         const id = createNodeId(nodeId);
         createNode({
-          ...data,
+          data,
           id,
           parent: null,
           children: [],

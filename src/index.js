@@ -19,17 +19,22 @@ export const sourceNodes = async (helpers, config) => {
     const { lists = [] } = sites[i];
     const get = listResource.requestFactory(host, sites[i], client, helpers);
 
+    helpers.reporter.info(`Working on site: ${sites[i].name}`);
+
     for (let j = 0; j < lists.length; j++) {
       const list = lists[j];
 
+      helpers.reporter.info(`Sourcing nodes for list: ${list[i].title}`);
+
       if (!listResource.validate(list)) {
+        helpers.reporter.error(`${list[i].title} is not a valid list.`);
         continue;
       }
 
       try {
         await get(list);
       } catch (err) {
-        console.error(err);
+        helpers.reporter.error(err);
       }
     }
   }
