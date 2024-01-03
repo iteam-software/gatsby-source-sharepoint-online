@@ -20,7 +20,7 @@ export default {
     path: outputPath,
     library: {
       name: "gatsby-source-sharepoint-online",
-      type: "commonjs2",
+      type: "commonjs-module",
     },
   },
   externals: [nodeExternals()],
