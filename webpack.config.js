@@ -1,20 +1,21 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
+import path from "path";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import nodeExternals from "webpack-node-externals";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = path.resolve(
   __dirname,
   "plugins/gatsby-source-sharepoint-online"
 );
 
-module.exports = {
+export default {
   mode: "production",
   target: "node",
   entry: ["isomorphic-fetch", "./src/index.js"],
-  experiments: {
-    outputModule: true,
-  },
+  experiments: { outputModule: true },
   output: {
     filename: "gatsby-node.cjs",
     path: outputPath,
@@ -66,4 +67,4 @@ module.exports = {
       ],
     }),
   ],
-};
+}
