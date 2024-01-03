@@ -59,20 +59,26 @@ export default class Resource {
       }
 
       const normalizedListName = item.title.replace(" ", "");
+      const type = `${site.name}${normalizedListName}ListItem`;
       const entry = await request.get();
 
       entry.value.forEach((data) => {
+        const nodeId = `${normalizedListName}${data.id}`;
+        console.log(`Create Node "${nodeId}"...`);
+        const id = helpers.createNodeId(nodeId);
+        console.log(id);
         helpers.actions.createNode({
           data,
-          id: helpers.createNodeId(`${normalizedListName}${data.id}`),
+          id,
           parent: null,
           children: [],
           internal: {
-            type: `${site.name}${normalizedListName}ListItem`,
+            type,
             content: JSON.stringify(data),
             contentDigest: helpers.createContentDigest(data),
           },
         });
+        console.log("...Done");
       });
     };
   }
