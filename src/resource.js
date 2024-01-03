@@ -48,7 +48,12 @@ export default class Resource {
    * @param {Client} graph The graph client.
    * @param {Helpers} helpers The Gatsby sourceNode API helpers.
    */
-  requestFactory(host, site, graph, helpers) {
+  requestFactory(
+    host,
+    site,
+    graph,
+    { createNodeId, actions: { createNode }, createContentDigest }
+  ) {
     return async (item) => {
       let request = graph
         .api(generateListItemsUrl(site, item, host))
@@ -62,12 +67,14 @@ export default class Resource {
       const type = `${site.name}${normalizedListName}ListItem`;
       const entry = await request.get();
 
+      if (!entry) {
+        throw new Error(`Failed to get ${type}`);
+      }
+
       entry.value.forEach((data) => {
         const nodeId = `${normalizedListName}${data.id}`;
-        console.log(`Create Node "${nodeId}"...`);
-        const id = helpers.createNodeId(nodeId);
-        console.log(id);
-        helpers.actions.createNode({
+        const id = createNodeId(nodeId);
+        createNode({
           data,
           id,
           parent: null,
@@ -75,10 +82,9 @@ export default class Resource {
           internal: {
             type,
             content: JSON.stringify(data),
-            contentDigest: helpers.createContentDigest(data),
+            contentDigest: createContentDigest(data),
           },
         });
-        console.log("...Done");
       });
     };
   }

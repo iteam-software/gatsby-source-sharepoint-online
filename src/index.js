@@ -17,7 +17,6 @@ export const sourceNodes = async (helpers, config) => {
 
   for (let i = 0; i < sites.length; i++) {
     const { lists = [] } = sites[i];
-    console.log(`Query for list: ${sites[i].title}`);
     const get = listResource.requestFactory(host, sites[i], client, helpers);
 
     for (let j = 0; j < lists.length; j++) {
