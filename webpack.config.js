@@ -13,40 +13,44 @@ const outputPath = path.resolve(
 
 export default {
   mode: "production",
-  target: "node",
   entry: ["isomorphic-fetch", "./src/index.js"],
   output: {
     filename: "gatsby-node.js",
     path: outputPath,
-    library: {
-      name: "gatsby-source-sharepoint-online",
-      type: "commonjs-module",
-    },
+    module: true,
   },
-  // externals: [nodeExternals()],
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.js$/,
-  //       exclude: /node_modules/,
-  //       use: {
-  //         loader: "babel-loader",
-  //         options: {
-  //           plugins: ["@babel/plugin-transform-class-properties"],
-  //           presets: [
-  //             [
-  //               "@babel/preset-env",
-  //               {
-  //                 targets: { esmodules: true },
-  //                 modules: false,
-  //               },
-  //             ],
-  //           ],
-  //         },
-  //       },
-  //     },
-  //   ],
-  // },
+  experiments: {
+    outputModule: true,
+  },
+  externalsPresets: { node: true },
+  externals: [
+    nodeExternals({
+      importType: "module",
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: ["@babel/plugin-transform-class-properties"],
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: { esmodules: true },
+                  modules: false,
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin({

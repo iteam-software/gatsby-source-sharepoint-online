@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-sharepoint-online",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "Sources data for Gatsby from Sharepoint Online.",
   "type": "module",
   "scripts": {
