@@ -16,7 +16,7 @@ module.exports = {
     outputModule: true,
   },
   output: {
-    filename: "gatsby-node.js",
+    filename: "gatsby-node.cjs",
     path: outputPath,
     module: true,
     libraryTarget: "module",
