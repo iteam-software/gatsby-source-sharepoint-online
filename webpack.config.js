@@ -33,7 +33,15 @@ export default {
           loader: "babel-loader",
           options: {
             plugins: ["@babel/plugin-transform-class-properties"],
-            presets: [["@babel/preset-env", { targets: { esmodules: true } }]],
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: { esmodules: true },
+                  modules: false,
+                },
+              ],
+            ],
           },
         },
       },
@@ -61,7 +69,6 @@ export default {
           transform(content, path) {
             const pkg = JSON.parse(content.toString("utf-8"));
             delete pkg.devDependencies;
-            delete pkg.type;
             return Buffer.from(JSON.stringify(pkg, null, 2), "utf-8");
           },
         },
