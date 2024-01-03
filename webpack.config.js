@@ -15,13 +15,11 @@ export default {
   mode: "production",
   target: "node",
   entry: ["isomorphic-fetch", "./src/index.js"],
-  experiments: { outputModule: true },
   output: {
     filename: "gatsby-node.cjs",
     path: outputPath,
-    module: true,
-    libraryTarget: "module",
-    chunkFormat: "module",
+    library: "gatsby-source-sharepoint-online",
+    libraryTarget: "commonjs2",
   },
   externals: [nodeExternals()],
   module: {
