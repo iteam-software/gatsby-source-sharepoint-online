@@ -174,7 +174,7 @@ describe("sourceNodes hook", () => {
 
     // Assert
     expect(helpers.actions.createNode).not.toHaveBeenCalled();
-    expect(console.error).toHaveBeenCalledWith("failure");
+    expect(helpers.reporter.panicOnBuild).toHaveBeenCalledWith("failure");
   });
 
   test("should run when lists is undefined", async () => {

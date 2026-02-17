@@ -1,8 +1,6 @@
-jest.mock("isomorphic-fetch");
-import fetch from "isomorphic-fetch";
+jest.mock("../client.mjs");
 import { createClient } from "../client.mjs";
 import Resource from "../resource.mjs";
-import { Response } from "node-fetch";
 
 const consoleWarn = console.warn;
 
@@ -114,24 +112,17 @@ describe("[Resource]", () => {
 
   test("should create a get request from the request factory", async () => {
     // Arrange
-    fetch.mockReturnValueOnce(
-      Promise.resolve(
-        new Response(JSON.stringify({ access_token: "token" }), {
-          status: 200,
-          statusText: "OK"
-        })
-      )
-    ).mockReturnValueOnce(
-      Promise.resolve(
-        new Response(JSON.stringify({ value: [] }), {
-          status: 200,
-          statusText: "OK"
-        })
-      )
-    );
+    const mockGet = jest.fn().mockResolvedValue({ value: [{ id: "1", fields: {} }] });
+    const mockExpand = jest.fn().mockReturnThis();
+    const mockApi = jest.fn().mockReturnValue({
+      expand: mockExpand,
+      get: mockGet
+    });
+    createClient.mockReturnValue({ api: mockApi });
+    
     const resource = new Resource("list");
     const client = createClient(baseConfig);
-    const request = resource.requestFactory("test", "test", client, helpers);
+    const request = resource.requestFactory("test", {name: "test", relativePath: "test"}, client, helpers);
 
     // Act
     await request({ title: "Heroes", fields: ["Superpower"] });
@@ -142,24 +133,17 @@ describe("[Resource]", () => {
 
   test("should create a get request from the request factory with no fields", async () => {
     // Arrange
-    fetch.mockReturnValueOnce(
-      Promise.resolve(
-        new Response(JSON.stringify({ access_token: "token" }), {
-          status: 200,
-          statusText: "OK"
-        })
-      )
-    ).mockReturnValueOnce(
-      Promise.resolve(
-        new Response(JSON.stringify({ value: [] }), {
-          status: 200,
-          statusText: "OK"
-        })
-      )
-    );
+    const mockGet = jest.fn().mockResolvedValue({ value: [{ id: "1", fields: {} }] });
+    const mockExpand = jest.fn().mockReturnThis();
+    const mockApi = jest.fn().mockReturnValue({
+      expand: mockExpand,
+      get: mockGet
+    });
+    createClient.mockReturnValue({ api: mockApi });
+    
     const resource = new Resource("list");
     const client = createClient(baseConfig);
-    const request = resource.requestFactory("test", "test", client, helpers);
+    const request = resource.requestFactory("test", {name: "test", relativePath: "test"}, client, helpers);
 
     // Act
     await request({ title: "Heroes" });
