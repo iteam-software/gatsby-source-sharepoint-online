@@ -25,6 +25,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+      env:
+        CYPRESS_INSTALL_BINARY: 0
     - run: npm test -- --collectCoverage
       env:
         CI: true

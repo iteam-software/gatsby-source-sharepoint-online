@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    "^.+\\.jsx?$": `<rootDir>/jest-preprocess.js`
+    "^.+\\.(jsx?|mjs)$": `<rootDir>/jest-preprocess.js`
   },
   moduleFileExtensions: ["jsx", "js", "mjs"],
   moduleNameMapper: {
@@ -13,13 +13,13 @@ module.exports = {
     `<rootDir>.*/public`,
     "<rootDir>.*/cypress"
   ],
-  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
+  transformIgnorePatterns: [`node_modules/(?!(gatsby|query-string|decode-uri-component|split-on-first|filter-obj|node-fetch|data-uri-to-buffer|fetch-blob|formdata-polyfill)/)`],
   globals: {
     __PATH_PREFIX__: ``
   },
   testEnvironmentOptions: {
     url: `http://localhost`
   },
-  testMatch: [" **/*.test.mjs"],
+  testMatch: ["**/*.test.mjs"],
   setupFiles: [`<rootDir>/loadershim.js`]
 };

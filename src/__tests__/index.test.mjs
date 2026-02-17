@@ -10,6 +10,11 @@ describe("sourceNodes hook", () => {
     createContentDigest: jest.fn(),
     actions: {
       createNode: jest.fn()
+    },
+    reporter: {
+      info: jest.fn(),
+      error: jest.fn(),
+      panicOnBuild: jest.fn()
     }
   };
 
@@ -24,6 +29,9 @@ describe("sourceNodes hook", () => {
     helpers.createNodeId.mockReset();
     helpers.createContentDigest.mockReset();
     helpers.actions.createNode.mockReset();
+    helpers.reporter.info.mockReset();
+    helpers.reporter.error.mockReset();
+    helpers.reporter.panicOnBuild.mockReset();
     console.error = consoleError;
   });
 
@@ -166,7 +174,7 @@ describe("sourceNodes hook", () => {
 
     // Assert
     expect(helpers.actions.createNode).not.toHaveBeenCalled();
-    expect(console.error).toHaveBeenCalledWith("failure");
+    expect(helpers.reporter.panicOnBuild).toHaveBeenCalledWith("failure");
   });
 
   test("should run when lists is undefined", async () => {
